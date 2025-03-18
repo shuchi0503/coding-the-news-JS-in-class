@@ -8,41 +8,152 @@
         *:not(code) {
             font-family: sans-serif;
         }
+
+
+        table {
+            gap: 0;
+        }
+
+        /* Table header styling */
+        th {
+            border-bottom: 2px solid black;
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+
+        td, th {
+        padding: 0.75em;
+        gap: 0;
+        }
+
     </style>
 </head>
 <body>
-    <h1>Class 6: Calculate the vote results for NY with Kamala Harris</h1>
-    <h2>Goal: Calculate voting percentage and determine which candidate won and by what margin. It should look like this:</h2>
-    <code>Kamala Harris won New York with 56.4% of the vote, about 13 points more than Donald Trump, who had 43.6%.</code>
+    <h1>Class 8: Create an HTML Table with a loop</h1>
+    <h2>Goal: Using loops and the DOM, create a table based on a dataset</h2>
     <h3>Things to keep in mind</h3>
     <ul>
-        <li>You'll need to format the numbers a bit -- there's a powerful tool called <code>.ToFixed()</code> in Javascript you can use to round numbers</li>
-        <li>You have all the data needed, but you need to figure out which variables to do and how to calculate it</li>
+        <li>Study your <code>Table</code> elements. This is a good resource: <a href="https://www.w3schools.com/html/html_tables.asp">W3 Schools</a></li>
+        <li>There’s more than one way to do the second part of the problem – I’ll post two solutions at the end.</li>
+        <li>You’ll need to use <code>toLocaleString()</code> to format the numbers</li>
     </ul>
+
+    <!-- Select the table below!-->
+    <table id="table">
+        <thead id="table_head">
+
+        </thead>
+        <tbody id="table_body">
+
+        </tbody>
+
+    </table>
+
      <script>
-        //Votes
-        const kamalaVotes = '4583210';
-        const trumpVotes = '3548552';
-        
-        //Convert the Numbers
+        //Votes 2020-2024
+        const boroughs = [
+            {
+                borough: "Manhattan",
+                trumpVotes2024: 113921,
+                harrisVotes2024: 533782,
+                demVoteChange: 169509,
+                repVoteChange: 29471,
+                harrisVotePercentage: 82.39,
+                trumpVotePercentage: 17.61
+            },
+            {
+                borough: "Bronx",
+                trumpVotes2024: 98174,
+                harrisVotes2024: 261670,
+                demVoteChange: -56733,
+                repVoteChange: 42292,
+                harrisVotePercentage: 72.74,
+                trumpVotePercentage: 27.26
+            },
+            {
+                borough: "Brooklyn",
+                trumpVotes2024: 233964,
+                harrisVotes2024: 601265,
+                demVoteChange: 114131,
+                repVoteChange: 100311,
+                harrisVotePercentage: 71.97,
+                trumpVotePercentage: 28.03
+            },
+            {
+                borough: "Queens",
+                trumpVotes2024: 264628,
+                harrisVotes2024: 437282,
+                demVoteChange: 14658,
+                repVoteChange: 109243,
+                harrisVotePercentage: 62.29,
+                trumpVotePercentage: 37.71
+            },
+            {
+                borough: "Staten Island",
+                trumpVotes2024: 128151,
+                harrisVotes2024: 69345,
+                demVoteChange: 17175,
+                repVoteChange: 31634,
+                harrisVotePercentage: 35.11,
+                trumpVotePercentage: 64.89
+            }
+        ];
 
-        let converted_number_kamala = Number(kamalaVotes);
-        let converted_number_trump = Number(trumpVotes);
+        const headers = ['Borough','2024 Trump votes','2024 Harris votes','Dem vote change from 2020','Rep vote change from 2020','Harris vote percentage','Trump vote percentage'];
 
-        //Write a function to calculate the share of votes each candidate got and save it to variables
+        //make a variable that selects table body by its id
+            let table_body = document.getElementById('table_body');
 
-        function calculateVotes(){
-            console.log(converted_number_kamala/(converted_number_kamala+converted_number_trump) *100);
-            console.log(converted_number_trump/(converted_number_kamala+converted_number_trump)*100);
-        }
-        calculateVotes()
-        //Write a console.log that prints out a message of the result
-        
-        function winner(winner, percentage, loser, percentage2){
-            
-        }
+        //make a variable that selects table head by its id
+
+        let table_head = document.getElementById('table_head');
+
+        //make a variable that creates a <tr> element for the headers 
+
+        let table_row = document.createElement('tr');
     
 
+        //make a forEach loop that goes through the headers array and adds headers to the table
+        headers.forEach(function(head) {
+
+         
+        let table_head = document.createElement('th')
+        table_head.textContent = head;
+        table_row.append(table_head);
+
+           //create a <th> element
+             
+
+            //add the header name to the <th> element as text
+            
+
+            //append the header to the <tr> element for the headers
+
+        });
+
+        //append the <tr> element for the headers to the table head
+            table_head.append(table_row)
+
+        //make a forEach loop that goes through the data array and adds rows to the table
+        boroughs.forEach(function(borough) {
+
+            //make a variable that creates a <tr> element for each borough
+          let tr1 = document.createElement['tr'];
+          tr1.textContent = borough.borough;
+          table_body.append(tr1);
+          
+            //create a string that contains the table row items (<td> elements) for each borough as html
+
+            //add the html to the <tr> element 
+
+            //add the <tr> element to the table body
+
+
+        });
+
+        
+    
      </script>
 </body>
 </html>
